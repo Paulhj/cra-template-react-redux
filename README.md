@@ -68,3 +68,47 @@
 | webpack-bundle-analyzer         | Generate report of what's in the app's production bundle         |
 | webpack-cli                     | Run Webpack via the command line                                 |
 | webpack-dev-server              | Serve app via Webpack                                            |
+
+## Steps for creating your own application:
+
+1. Open up the mockData.js in your editor.  Start with what you want the shape of your data model to look like.  You don't have to create all the models that you will need but maybe create the core one that you will be using in your application to start with.  For example say your appliaction is going to track gym members you will want to change the items collection in the mockData.js file to members and then add a few test members to the collection with the data model shape you want.  Maybe something like this:
+
+```json
+const members = [
+  {
+    id: 1,
+    nmFirst: "Paul",
+    nmLast: "Buckland",
+    alias: "",
+    minor: "false",
+    signedWaiver: "true",
+    lastVisitDt: "01/01/2020",
+    createDt: "01/01/2018",
+    createdBy: 1,
+  },
+  {
+    id: 2,
+    nmFirst: "Kate",
+    nmLast: "Jones",
+    alias: "Dirty Kate",
+    minor: "false",
+    signedWaiver: "true",
+    lastVisitDt: "02/01/2020",
+    createDt: "01/15/2018",
+    createdBy: 2,
+  },
+  {
+    id: 1,
+    nmFirst: "Ryan",
+    nmLast: "Smith",
+    alias: "Ry Guy",
+    minor: "true",
+    signedWaiver: "true",
+    lastVisitDt: "01/01/2020",
+    createDt: "01/01/2018",
+    createdBy: 1,
+  }
+];
+```
+
+Also make sure the newItem object is changed to set the defaults and if you have any associations with another collection from your core collection make sure to include that in the mockData.js file.  For instance in the above example there is a createdBy field with an id.  Make sure there is a collection of users or whatever you want that will link up to the id in that field.  And finally make sure you export your objects in module.exports.
