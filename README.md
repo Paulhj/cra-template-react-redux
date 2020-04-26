@@ -71,7 +71,7 @@
 
 ## Steps for creating your own application:
 
-1. Open up the mockData.js in your editor.  Start with what you want the shape of your data model to look like.  You don't have to create all the models that you will need but maybe create the core one that you will be using in your application to start with.  For example say your appliaction is going to track gym members you will want to change the items collection in the mockData.js file to members and then add a few test members to the collection with the data model shape you want.  Maybe something like this:
+1. Open up the tools\mockData.js in your editor.  Start with what you want the shape of your data model to look like.  You don't have to create all the models that you will need but maybe create the core one that you will be using in your application to start with.  For example say your appliaction is going to track gym members you will want to change the items collection in the mockData.js file to members and then add a few test members to the collection with the data model shape you want.  Maybe something like this:
 
 ```json
 const members = [
@@ -112,3 +112,9 @@ const members = [
 ```
 
 Also make sure the newItem object is changed to set the defaults and if you have any associations with another collection from your core collection make sure to include that in the mockData.js file.  For instance in the above example there is a createdBy field with an id.  Make sure there is a collection of users or whatever you want that will link up to the id in that field.  And finally make sure you export your objects in module.exports.
+
+2. Update the tools\createMockDb.js file to reference your newly created collections from the mockData.js file.
+
+3. Update the tools\apiServer.js file to make sure your new core collection is being called in the server.post call.  Also update the validatItem method so it validates your new core object correctly and the createSlug method if you are using a slug.
+
+4. Now if all went well you should now be able to create the mock database and run the api server which will return the values in that mock database.  From the command prompt type npm run start:api.  This command can be found in the package.json file and will first call the createMockDb.js file which will create the db.json file which is now your mock database that you can use to create, add, update and delete items in your application.  The command will next start the api server which will be listening for input on port 3001.  You can now open a browser and goto http://localhost:3001/{collection-name} and you should see all the items in your collection written out to the browser.  So if you had a collection of members the api call would be http://localhost:3001/members.
