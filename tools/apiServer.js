@@ -19,7 +19,7 @@ const router = jsonServer.router(path.join(__dirname, "db.json"));
 // Can pass a limited number of options to this to override (some) defaults. See https://github.com/typicode/json-server#api
 const middlewares = jsonServer.defaults({
   // Display json-server's built in homepage when json-server starts.
-  static: "node_modules/json-server/dist"
+  static: "node_modules/json-server/dist",
 });
 
 // Set default middlewares (logger, static, cors and no-cache)
@@ -49,7 +49,7 @@ server.post("/items/", function(req, res, next) {
   if (error) {
     res.status(400).send(error);
   } else {
-    req.body.slug = createSlug(req.body.name); // Generate a slug for new courses.
+    req.body.slug = createSlug(req.body.name); // Generate a slug for new items.
     next();
   }
 });
