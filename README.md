@@ -71,6 +71,8 @@
 
 ## Steps for creating your own application:
 
+### Configure the mock database and setup the api
+
 1. Open up the tools\mockData.js in your editor.  Start with what you want the shape of your data model to look like.  You don't have to create all the models that you will need but maybe create the core one that you will be using in your application to start with.  For example say your appliaction is going to track gym members you will want to change the items collection in the mockData.js file to members and then add a few test members to the collection with the data model shape you want.  Maybe something like this:
 
 ```json
