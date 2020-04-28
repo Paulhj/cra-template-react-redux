@@ -71,7 +71,7 @@
 
 ## Steps for creating your own application:
 
-### Configure the mock database and setup the api
+### Configure the mock database and setup the api server
 
 1. Open up the tools\mockData.js in your editor.  Start with what you want the shape of your data model to look like.  You don't have to create all the models that you will need but maybe create the core one that you will be using in your application to start with.  For example say your appliaction is going to track gym members you will want to change the items collection in the mockData.js file to members and then add a few test members to the collection with the data model shape you want.  Maybe something like this:
 
@@ -120,3 +120,42 @@ Also make sure the newItem object is changed to set the defaults and if you have
 3. Update the tools\apiServer.js file to make sure your new core collection is being called in the server.post call.  Also update the validatItem method so it validates your new core object correctly and the createSlug method if you are using a slug.
 
 4. Now if all went well you should now be able to create the mock database and run the api server which will return the values in that mock database.  From the command prompt type npm run start:api.  This command can be found in the package.json file and will first call the createMockDb.js file which will create the db.json file which is now your mock database that you can use to create, add, update and delete items in your application.  The command will next start the api server which will be listening for input on port 3001.  You can now open a browser and goto http://localhost:3001/{collection-name} and you should see all the items in your collection written out to the browser.  So if you had a collection of members the api call would be http://localhost:3001/members.
+
+### Configure your core collection api file
+
+1. Next open up the src\api\itemApi.js file and get familiar with it.  Create a new file based on that file but configure it to use your collection instead of the default items collection that comes with the template.  For instance if your core collection was members then you would need to create a memberApi.js file and then copy the contents of the itemApi.js file and then configure it appropriately to use your core collection.  For a core collection of members you would have to change line 2 to look like this:
+
+```javascript
+const baseUrl = process.env.API_URL + "/members/";
+```
+
+You might also want to change the method name from item to member for instance if you core collection was members then change getItems to getMembers and so on for the save and delete.
+
+### Configure Redux Actions to use your new core collection
+
+1. Open up the src\reduc\actions\actionTypes.js file.  This file holds all the action type constants.  You will need to copy and paste the following action types in the file and then rename them to match your core collection.
+
+```javascript 
+export const LOAD_ITEMS_SUCCESS = "LOAD_ITEMS_SUCCESS";
+export const UPDATE_ITEM_SUCCESS = "UPDATE_ITEM_SUCCESS";
+export const CREATE_ITEM_SUCCESS = "CREATE_ITEM_SUCCESS";
+export const DELETE_ITEM_OPTIMISTIC = "DELETE_ITEM_OPTIMISTIC";
+```
+
+So if your core collection was members then it would be LOAD_MEMBERS_SUCCESS and so on.
+
+2. Open up the src\redux\actions\itemActions.js file and get familiar with it.  Notice that on line 3 this file imports the itemsApi.js file so it can access the api calls.  
+
+'''javascript
+import * as itemApi from "../../api/itemApi";
+```
+
+You will need to create your own actions file to call the core collection api you just created.  Add the new file to the actions directory and configure it to use you new core collection.  You will also now reference the new action types you created in the previous step.
+
+### Configure Redux Reducers to use your new core collection
+
+1. You are now ready to configure your reducers.  Open the src\redux\reducers\initialState.js file and add an initial state collections for your new core collection.
+
+2. Open up the src\redux\reducers\itemReducer.js file and get familiar with it.  Reducers specify how the application's state changes in response to actions sent to the store.  Copy the contents of the file and create a new reducer file to correspond with your new core collection.  If it's members then create memberReducer.js file and configure it to use the members collection.
+
+3. Open up the src\redux\reducers\index.js file and add the newly created reducer to the root reducer.
