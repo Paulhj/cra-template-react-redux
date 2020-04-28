@@ -146,7 +146,7 @@ So if your core collection was members then it would be LOAD_MEMBERS_SUCCESS and
 
 2. Open up the src\redux\actions\itemActions.js file and get familiar with it.  Notice that on line 3 this file imports the itemsApi.js file so it can access the api calls.  
 
-'''javascript
+```javascript
 import * as itemApi from "../../api/itemApi";
 ```
 
