@@ -159,3 +159,7 @@ You will need to create your own actions file to call the core collection api yo
 2. Open up the src\redux\reducers\itemReducer.js file and get familiar with it.  Reducers specify how the application's state changes in response to actions sent to the store.  Copy the contents of the file and create a new reducer file to correspond with your new core collection.  If it's members then create memberReducer.js file and configure it to use the members collection.
 
 3. Open up the src\redux\reducers\index.js file and add the newly created reducer to the root reducer.
+
+### Create your components!  Now for the fun stuff!!
+
+1. Create a new folder under src\components to hold your components.  For a managing members you would create a members folder.
