@@ -163,3 +163,7 @@ You will need to create your own actions file to call the core collection api yo
 ### Create your components!  Now for the fun stuff!!
 
 1. Create a new folder under src\components to hold your components.  For a managing members you would create a members folder.
+2. Using the pattern for in the items folder go ahead and create your own component for viewing the items in your collection.  The two components to model your components after is ItemsPage.js and ItemList.js.  If you were tracking members then you would create MembersPage.js and MemberList.js.
+3. Next you can create the components to supports viewing, adding and editing the items in your collection.  To do this model your components after ManageItemPage.js and ItemForm.js.  
+
+### I hope this template was useful.  Happy Coding!
